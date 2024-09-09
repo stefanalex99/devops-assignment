@@ -1,0 +1,12 @@
+In this project I deployed a Jenkins - ArgoCD - Minikube setup, running a hello world server.
+
+- I deployed Jenkins and Traefik by installing helm charts. I then created an ingress route to expose Jenkins.
+- I created a PV and PVC to mount the repository from local machine to Jenkins server.
+- I created a Jenkinsfile which builds the hello world image based on a Dockerfile and pushes it to Dockerhub.
+- I configured Jenkins to run the Jenkinsfile from the local repository mounted on the jenkins agent.
+- I deoployed ArgoCD and exposed it using an ingress route, similarly to Jenkins.
+
+The biggest unsolved challange was tying Jenkins to a git repository since minikube doesn't have the
+public IP exposure, even when using ingress. I tried fixing this by using a local git repository but
+even after correct mounts (local -> minikube -> jenkins server pod -> jenkins agent pod) the repository
+was not recognized as a git one.
