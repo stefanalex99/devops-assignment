@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: git-repo-pvc       # The name of the PVC
+spec:
+  accessModes:
+    - ReadWriteMany        # The same access mode as the PV
+  resources:
+    requests:
+      storage: 1Gi         # Storage request (same or less than the PV size)
+  volumeName: git-repo-pv   # This binds the PVC to the specific PV by name
+  storageClassName: manual
